@@ -4,6 +4,7 @@ Init variables, objects
 
 // Name field init variables
 let name = document.getElementById("name")
+let nameLabel = document.getElementById("name")
 let nameHint = document.getElementsByClassName("name-hint")[0]
 
 // Email field init variables
@@ -217,6 +218,7 @@ function checkNameField() {
     if (!name.value.length) {
         name.value = "Please enter a name"
         fieldFormatting(name, nameHint, false)
+        nameLabel.classList.add("not-valid");
     }
 }
 
