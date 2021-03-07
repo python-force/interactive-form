@@ -1,3 +1,7 @@
+/* ========================
+Init variables, objects
+ ======================== */
+
 // Name field init variables
 let name = document.getElementById("name")
 let nameHint = document.getElementsByClassName("name-hint")[0]
@@ -22,10 +26,9 @@ let colors = document.getElementById("color"), colorOption, i;
 // Activities field init variables
 let total = 0;
 let totalSum = document.getElementById("activities-cost")
-let activitiesBox = document.getElementById("activities-box")
-let nodelistLabel = activitiesBox.getElementsByTagName("input");
 let activities = document.getElementById("activities");
-let checkBoxes = activitiesBox.getElementsByTagName("input");
+let nodelistLabel = activities.getElementsByTagName("input");
+let checkBoxes = activities.getElementsByTagName("input");
 let activitiesHint = activities.getElementsByClassName("activities-hint")[0]
 
 // Form
@@ -108,19 +111,9 @@ function calculateTotal(element, cost, checked) {
     }
 }
 
-/*
-Pay With
-*/
-payWith.onchange = choosePayment;
-
-function choosePayment(e) {
-
-}
-
-
-/*
+/* ========================
 Call Functions
-*/
+ ======================== */
 
 // Select Name field - ready to enter
 name.focus();
@@ -136,6 +129,26 @@ paypal.hidden = true
 bitcoin.hidden = true
 payWith.getElementsByTagName('option')[1].selected = 'selected'
 
+/* ========================
+Helper  Functions
+ ======================== */
+
+// Function to style the field when exception happens
+function fieldFormatting(element, elementHint, result) {
+    if(result) {
+        element.style.background = null;
+        element.style.color = null;
+        elementHint.style.display = null;
+    } else {
+        element.style.background = "red";
+        element.style.color = "white";
+        elementHint.style.display = "block";
+    }
+}
+
+/* ========================
+Event Listeners
+ ======================== */
 
 /*
 Event listener for Activities fieldset
@@ -182,18 +195,10 @@ Event listener Form Submit
 */
 
 function checkNameField() {
-    nameHint.style.display = null;
-    name.style.background = null;
-    name.style.color = null;
-    name.style.opacity = null;
+    fieldFormatting(name, nameHint, true)
     if (!name.value.length) {
         name.value = "Please enter a name"
-        name.style.background = "red";
-        name.style.color = "white";
-        name.style.opacity = 0.2;
-        let nameHint = document.getElementsByClassName("name-hint")[0]
-        console.log(nameHint)
-        nameHint.style.display = "block";
+        fieldFormatting(name, nameHint, false)
     }
 }
 
@@ -240,17 +245,7 @@ function checkActivities() {
     console.log(atLeastChecked)
 }
 
-function fieldFormatting(element, elementHint, result) {
-    if(result) {
-        element.style.background = null;
-        element.style.color = null;
-        elementHint.style.display = null;
-    } else {
-        element.style.background = "red";
-        element.style.color = "white";
-        elementHint.style.display = "block";
-    }
-}
+
 
 // cCard validation
 function checkcCard() {
