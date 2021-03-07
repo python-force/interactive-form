@@ -36,7 +36,12 @@ let payWith = document.getElementById("payment")
 let paypal = document.getElementById("paypal")
 let bitcoin = document.getElementById("bitcoin")
 let ccNumber = document.getElementById("cc-num")
+let ccNumberHint = document.getElementsByClassName("cc-hint")[0]
 let cCard = document.getElementById("credit-card")
+let ccZip = document.getElementById("zip")
+let ccZipHint = document.getElementsByClassName("zip-hint")[0]
+let ccCVV = document.getElementById("cvv")
+let ccCVVHint = document.getElementsByClassName("cvv-hint")[0]
 
 
 // Function to show Other Job Role field
@@ -235,6 +240,63 @@ function checkActivities() {
     console.log(atLeastChecked)
 }
 
+function fieldFormatting(element, elementHint, result) {
+    if(result) {
+        element.style.background = null;
+        element.style.color = null;
+        elementHint.style.display = null;
+    } else {
+        element.style.background = "red";
+        element.style.color = "white";
+        elementHint.style.display = "block";
+    }
+}
+
+// cCard validation
+function checkcCard() {
+    if (isNaN(ccNumber.value)) {
+        ccNumber.value = "Please enter a valid CC number"
+        fieldFormatting(ccNumber, ccNumberHint, false)
+    } else {
+        if (13 <= ccNumber.value.length && ccNumber.value.length <= 16){
+            fieldFormatting(ccNumber, ccNumberHint, true)
+        } else {
+            ccNumber.value = "Please enter a valid CC number"
+            fieldFormatting(ccNumber, ccNumberHint, false)
+        }
+    }
+}
+
+// Zip validation
+function checkZip() {
+    if (isNaN(ccZip.value)) {
+        ccZip.value = "Please enter a valid zip"
+        fieldFormatting(ccZip, ccZipHint, false)
+    } else {
+        if (ccZip.value.length === 5){
+            fieldFormatting(ccZip, ccZipHint, true)
+        } else {
+            ccZip.value = "Please enter a valid zip"
+            fieldFormatting(ccZip, ccZipHint, false)
+        }
+    }
+}
+
+// Zip validation
+function checkCVV() {
+    if (isNaN(ccCVV.value)) {
+        ccCVV.value = "Please enter a valid CVV"
+        fieldFormatting(ccCVV, ccCVVHint, false)
+    } else {
+        if (ccCVV.value.length === 3){
+            fieldFormatting(ccCVV, ccCVVHint, true)
+        } else {
+            ccCVV.value = "Please enter a valid CVV"
+            fieldFormatting(ccCVV, ccCVVHint, false)
+        }
+    }
+}
+
 // Complete form validation
 form.addEventListener("submit", function(e){ // event into anonymous function
     console.log(e.target)
@@ -243,6 +305,9 @@ form.addEventListener("submit", function(e){ // event into anonymous function
     checkNameField()
     checkEmailField()
     checkActivities()
+    checkcCard()
+    checkZip()
+    checkCVV()
 
   if(!ver){
       return false;
