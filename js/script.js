@@ -46,8 +46,10 @@ let ccNumberLabel = document.getElementsByClassName('credit-card-box')[0].getEle
 let ccNumberHint = document.getElementsByClassName("cc-hint")[0]
 let cCard = document.getElementById("credit-card")
 let ccZip = document.getElementById("zip")
+let ccZipLabel = document.getElementsByClassName('zip-box')[0].getElementsByTagName("label")[0]
 let ccZipHint = document.getElementsByClassName("zip-hint")[0]
 let ccCVV = document.getElementById("cvv")
+let ccCVVLabel = document.getElementsByClassName('cvv-box')[0].getElementsByTagName("label")[0]
 let ccCVVHint = document.getElementsByClassName("cvv-hint")[0]
 
 
@@ -221,8 +223,10 @@ function checkNameField() {
         name.value = "Please enter a name"
         fieldFormatting(name, nameHint, false)
         nameLabel.classList.add("not-valid");
+        nameLabel.classList.remove("valid");
     } else {
         nameLabel.classList.remove("not-valid");
+        nameLabel.classList.add("valid");
     }
 }
 
@@ -235,11 +239,13 @@ function checkEmailField() {
         email.value = "Please enter an email"
         fieldFormatting(email, emailHint, false)
         emailLabel.classList.add("not-valid");
+        emailLabel.classList.remove("valid");
     } else {
         let x = email.value
         console.log(x)
         if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(x)) {
             emailLabel.classList.remove("not-valid");
+            emailLabel.classList.add("valid");
         } else {
             emailHint.style.display = "inline";
             email.style.background = "red";
@@ -258,9 +264,11 @@ function checkActivities() {
     }
     if (!atLeastChecked) {
         activities.classList.add("not-valid"); // WCAG 2.1 AA
+        activities.classList.remove("valid"); // WCAG 2.1 AA
         activitiesHint.style.display = "block";
     } else {
         activities.classList.remove("not-valid"); // WCAG 2.1 AA
+        activities.classList.add("valid"); // WCAG 2.1 AA
     }
     console.log(atLeastChecked)
 }
@@ -276,10 +284,12 @@ function checkcCard() {
         if (13 <= ccNumber.value.length && ccNumber.value.length <= 16){
             fieldFormatting(ccNumber, ccNumberHint, true)
             ccNumberLabel.classList.remove("not-valid");
+            ccNumberLabel.classList.add("valid");
         } else {
             ccNumber.value = "Please enter a valid CC number"
             fieldFormatting(ccNumber, ccNumberHint, false)
             ccNumberLabel.classList.add("not-valid");
+            ccNumberLabel.classList.remove("valid");
         }
     }
 }
@@ -292,9 +302,14 @@ function checkZip() {
     } else {
         if (ccZip.value.length === 5){
             fieldFormatting(ccZip, ccZipHint, true)
+            ccZipLabel.classList.remove("not-valid");
+            ccZipLabel.classList.add("valid");
         } else {
             ccZip.value = "Please enter a valid zip"
             fieldFormatting(ccZip, ccZipHint, false)
+            ccZipLabel.classList.add("not-valid");
+            ccZipLabel.classList.remove("valid");
+
         }
     }
 }
@@ -307,9 +322,13 @@ function checkCVV() {
     } else {
         if (ccCVV.value.length === 3){
             fieldFormatting(ccCVV, ccCVVHint, true)
+            ccCVVLabel.classList.remove("not-valid");
+            ccCVVLabel.classList.add("valid");
         } else {
             ccCVV.value = "Please enter a valid CVV"
             fieldFormatting(ccCVV, ccCVVHint, false)
+            ccCVVLabel.classList.add("not-valid");
+            ccCVVLabel.classList.remove("valid");
         }
     }
 }
