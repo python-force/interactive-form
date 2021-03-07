@@ -28,6 +28,7 @@ let total = 0;
 let totalSum = document.getElementById("activities-cost")
 let activities = document.getElementById("activities");
 let nodelistLabel = activities.getElementsByTagName("input");
+let listLabels = activities.getElementsByTagName("label");
 let checkBoxes = activities.getElementsByTagName("input");
 let activitiesHint = activities.getElementsByClassName("activities-hint")[0]
 
@@ -147,7 +148,24 @@ function fieldFormatting(element, elementHint, result) {
 }
 
 /* ========================
-Event Listeners
+Accessibility WCAG 2.1 AA
+ ======================== */
+
+
+for (let i=0; i < checkBoxes.length; i++) {
+    checkBoxes[i].addEventListener('focus', (event) => {
+        listLabels[i].classList.add("focus");
+    });
+    checkBoxes[i].addEventListener('blur', (event) => {
+        listLabels[i].classList.remove("focus");
+    });
+}
+
+
+
+
+/* ========================
+Event Listeners (with part of WCAG 2.1 AA)
  ======================== */
 
 /*
@@ -232,15 +250,15 @@ function checkActivities() {
     atLeastChecked = false
     activitiesHint.style.display = "none";
     for (let i=0; i < checkBoxes.length; i++) {
-        console.log(checkBoxes[0])
-        if (!checkBoxes[i].checked) {
-            console.log(checkBoxes[i].checked)
-        } else {
+        if (checkBoxes[i].checked) {
             atLeastChecked = true
         }
     }
     if (!atLeastChecked) {
+        activities.classList.add("not-valid"); // WCAG 2.1 AA
         activitiesHint.style.display = "block";
+    } else {
+        activities.classList.remove("not-valid"); // WCAG 2.1 AA
     }
     console.log(atLeastChecked)
 }
