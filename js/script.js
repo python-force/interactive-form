@@ -4,11 +4,12 @@ Init variables, objects
 
 // Name field init variables
 let name = document.getElementById("name")
-let nameLabel = document.getElementById("name")
+let nameLabel = document.getElementsByTagName('label')[0]
 let nameHint = document.getElementsByClassName("name-hint")[0]
 
 // Email field init variables
 let email = document.getElementById("email")
+let emailLabel = document.getElementsByTagName('label')[1]
 let emailHint = document.getElementsByClassName("email-hint")[0]
 
 // Title(Job Role) field init variables
@@ -41,6 +42,7 @@ let payWith = document.getElementById("payment")
 let paypal = document.getElementById("paypal")
 let bitcoin = document.getElementById("bitcoin")
 let ccNumber = document.getElementById("cc-num")
+let ccNumberLabel = document.getElementsByClassName('credit-card-box')[0].getElementsByTagName("label")[0]
 let ccNumberHint = document.getElementsByClassName("cc-hint")[0]
 let cCard = document.getElementById("credit-card")
 let ccZip = document.getElementById("zip")
@@ -215,10 +217,12 @@ Event listener Form Submit
 
 function checkNameField() {
     fieldFormatting(name, nameHint, true)
-    if (!name.value.length) {
+    if (!name.value.length || name.value === "Please enter a name") {
         name.value = "Please enter a name"
         fieldFormatting(name, nameHint, false)
         nameLabel.classList.add("not-valid");
+    } else {
+        nameLabel.classList.remove("not-valid");
     }
 }
 
@@ -226,20 +230,16 @@ function checkNameField() {
 // http://www.regular-expressions.info/email.html
 // console.log(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test('abc1@sds.co'));
 function checkEmailField() {
-    email.style.background = null;
-    email.style.color = "black";
-    emailHint.style.display = null;
+    fieldFormatting(email, emailHint, true)
     if (!email.value.length) {
         email.value = "Please enter an email"
-        email.style.background = "red";
-        email.style.color = "white";
-        emailHint.style.display = "block";
-
+        fieldFormatting(email, emailHint, false)
+        emailLabel.classList.add("not-valid");
     } else {
         let x = email.value
         console.log(x)
         if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(x)) {
-            console.log("Hello")
+            emailLabel.classList.remove("not-valid");
         } else {
             emailHint.style.display = "inline";
             email.style.background = "red";
@@ -275,9 +275,11 @@ function checkcCard() {
     } else {
         if (13 <= ccNumber.value.length && ccNumber.value.length <= 16){
             fieldFormatting(ccNumber, ccNumberHint, true)
+            ccNumberLabel.classList.remove("not-valid");
         } else {
             ccNumber.value = "Please enter a valid CC number"
             fieldFormatting(ccNumber, ccNumberHint, false)
+            ccNumberLabel.classList.add("not-valid");
         }
     }
 }
