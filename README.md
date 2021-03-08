@@ -13,7 +13,7 @@ Validating user input and providing helpful error messages when the user enters 
 ### Features
 
 1. Name Validation
-2. Email Validation by RegExp
+2. Email Validation by RegExp according to RFC standard
 3. Calculating total by checking the boxes
 4. Comparing times not to select 2 same courses at the same time
 5. Choose desired payment option
