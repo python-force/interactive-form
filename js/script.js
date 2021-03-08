@@ -241,7 +241,6 @@ console.log(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:
 function checkEmailField() {
     fieldFormatting(email, emailHint, true)
     if (!email.value.length) {
-        email.value = "Please enter an email"
         fieldFormatting(email, emailHint, false)
         emailLabel.classList.add("not-valid");
         emailLabel.classList.remove("valid");
