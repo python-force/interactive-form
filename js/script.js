@@ -11,6 +11,7 @@ let nameHint = document.getElementsByClassName("name-hint")[0]
 let email = document.getElementById("email")
 let emailLabel = document.getElementsByTagName('label')[1]
 let emailHint = document.getElementsByClassName("email-hint")[0]
+let emailHintOrig = "Current email is not valid email..."
 
 // Title(Job Role) field init variables
 let titleRole = document.getElementById("title")
@@ -220,22 +221,9 @@ Name Field Validation
 function checkNameField() {
     fieldFormatting(name, nameHint, true)
     if (!name.value.length) {
-        name.value = "Name cannot be empty"
         fieldFormatting(name, nameHint, false)
         nameLabel.classList.add("not-valid");
         nameLabel.classList.remove("valid")
-        return false
-    } else if (name.value.length && name.value === "Please enter a name") {
-        name.value = "Please enter a name"
-        fieldFormatting(name, nameHint, false)
-        nameLabel.classList.add("not-valid");
-        nameLabel.classList.remove("valid");
-        return false
-    } else if (name.value.length && name.value === "Name cannot be empty") {
-        name.value = "Please enter a name"
-        fieldFormatting(name, nameHint, false)
-        nameLabel.classList.add("not-valid");
-        nameLabel.classList.remove("valid");
         return false
     } else {
         nameLabel.classList.remove("not-valid");
@@ -258,6 +246,7 @@ function checkEmailField() {
         fieldFormatting(email, emailHint, false)
         emailLabel.classList.add("not-valid");
         emailLabel.classList.remove("valid");
+        emailHint.innerHTML = "Email cannot be empty - it is required"
         return false
     } else {
         if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(email.value)) {
@@ -267,6 +256,7 @@ function checkEmailField() {
         } else {
             emailHint.style.display = "inline";
             email.style.background = "red";
+            emailHint.innerHTML = emailHintOrig
             return false
         }
     }
@@ -380,7 +370,7 @@ form.addEventListener("submit", function(e){ // event into anonymous function
     checkCVVcode = checkCVV()
 
     if (checkName && checkEmail && checkAct && checkCC && checkZipCode && checkCVVcode ) {
-        console.log('zatim jede')
+       form.submit()
     }
 
 })
