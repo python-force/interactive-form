@@ -243,6 +243,7 @@ function checkEmailField() {
     } else {
         let x = email.value
         console.log(x)
+
         if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(x)) {
             emailLabel.classList.remove("not-valid");
             emailLabel.classList.add("valid");
@@ -278,7 +279,6 @@ function checkActivities() {
 // cCard validation
 function checkcCard() {
     if (isNaN(ccNumber.value)) {
-        ccNumber.value = "Please enter a valid CC number"
         fieldFormatting(ccNumber, ccNumberHint, false)
     } else {
         if (13 <= ccNumber.value.length && ccNumber.value.length <= 16){
@@ -286,7 +286,6 @@ function checkcCard() {
             ccNumberLabel.classList.remove("not-valid");
             ccNumberLabel.classList.add("valid");
         } else {
-            ccNumber.value = "Please enter a valid CC number"
             fieldFormatting(ccNumber, ccNumberHint, false)
             ccNumberLabel.classList.add("not-valid");
             ccNumberLabel.classList.remove("valid");
@@ -297,7 +296,6 @@ function checkcCard() {
 // Zip validation
 function checkZip() {
     if (isNaN(ccZip.value)) {
-        ccZip.value = "Please enter a valid zip"
         fieldFormatting(ccZip, ccZipHint, false)
     } else {
         if (ccZip.value.length === 5){
@@ -305,7 +303,6 @@ function checkZip() {
             ccZipLabel.classList.remove("not-valid");
             ccZipLabel.classList.add("valid");
         } else {
-            ccZip.value = "Please enter a valid zip"
             fieldFormatting(ccZip, ccZipHint, false)
             ccZipLabel.classList.add("not-valid");
             ccZipLabel.classList.remove("valid");
@@ -317,7 +314,6 @@ function checkZip() {
 // Zip validation
 function checkCVV() {
     if (isNaN(ccCVV.value)) {
-        ccCVV.value = "Please enter a valid CVV"
         fieldFormatting(ccCVV, ccCVVHint, false)
     } else {
         if (ccCVV.value.length === 3){
@@ -325,13 +321,21 @@ function checkCVV() {
             ccCVVLabel.classList.remove("not-valid");
             ccCVVLabel.classList.add("valid");
         } else {
-            ccCVV.value = "Please enter a valid CVV"
             fieldFormatting(ccCVV, ccCVVHint, false)
             ccCVVLabel.classList.add("not-valid");
             ccCVVLabel.classList.remove("valid");
         }
     }
 }
+
+/*
+Validate fields while typing
+EMail / CC card / Zip / CVV
+*/
+email.addEventListener("input", checkEmailField);
+ccNumber.addEventListener("input", checkcCard);
+ccZip.addEventListener("input", checkZip);
+ccCVV.addEventListener("input", checkCVV);
 
 // Complete form validation
 form.addEventListener("submit", function(e){ // event into anonymous function
