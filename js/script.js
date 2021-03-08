@@ -222,7 +222,12 @@ Event listener Form Submit
 
 function checkNameField() {
     fieldFormatting(name, nameHint, true)
-    if (!name.value.length || name.value === "Please enter a name") {
+    if (!name.value.length) {
+        name.value = "Name cannot be empty"
+        fieldFormatting(name, nameHint, false)
+        nameLabel.classList.add("not-valid");
+        nameLabel.classList.remove("valid")
+    } else if (name.value.length && name.value === "Please enter a name") {
         name.value = "Please enter a name"
         fieldFormatting(name, nameHint, false)
         nameLabel.classList.add("not-valid");
