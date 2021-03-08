@@ -14,10 +14,11 @@ Validating user input and providing helpful error messages when the user enters 
 
 1. Name Validation
 2. Email Validation by RegExp according to RFC standard
-3. Calculating total by checking the boxes
-4. Comparing times not to select 2 same courses at the same time
-5. Choose desired payment option
-6. Validating fields while typing (Name, Email, Activities, Credit Card Number, Zip, CVV)
-7. Extra validation when submitting the form in case live validation fails
-8. If all info entered correctly green checkmarks added and form can be submitted
+3. Email Validation throws different error depends if empty or not valid email
+4. Calculating total by checking the boxes
+5. Comparing times not to select 2 same courses at the same time
+6. Choose desired payment option
+7. Validating fields while typing (Name, Email, Activities, Credit Card Number, Zip, CVV)
+8. Extra validation when submitting the form in case live validation fails
+9. If all info entered correctly green checkmarks added and form can be submitted
 
