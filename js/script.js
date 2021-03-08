@@ -335,8 +335,9 @@ function checkCVV() {
 
 /*
 Validate fields while typing
-EMail / CC card / Zip / CVV
+Name, Email / Activites / CC card / Zip / CVV
 */
+name.addEventListener("input", checkNameField);
 email.addEventListener("input", checkEmailField);
 activities.addEventListener("input", checkActivities);
 ccNumber.addEventListener("input", checkcCard);
