@@ -241,7 +241,6 @@ console.log(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:
 function checkEmailField() {
     fieldFormatting(email, emailHint, true)
     if (!email.value.length) {
-        console.log('Hello')
         email.value = "Please enter an email"
         fieldFormatting(email, emailHint, false)
         emailLabel.classList.add("not-valid");
@@ -359,7 +358,6 @@ ccCVV.addEventListener("input", checkCVV);
 
 // Complete form validation
 form.addEventListener("submit", function(e){ // event into anonymous function
-    console.log(e.target)
     e.preventDefault(); //Prevent submit event from refreshing the page
 
     checkName = checkNameField()
