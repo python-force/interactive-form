@@ -338,6 +338,7 @@ Validate fields while typing
 EMail / CC card / Zip / CVV
 */
 email.addEventListener("input", checkEmailField);
+activities.addEventListener("input", checkActivities);
 ccNumber.addEventListener("input", checkcCard);
 ccZip.addEventListener("input", checkZip);
 ccCVV.addEventListener("input", checkCVV);
