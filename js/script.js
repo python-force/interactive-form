@@ -217,9 +217,8 @@ function paymentOption(e) {
 }
 
 /*
-Event listener Form Submit
+Name Field Validation
 */
-
 function checkNameField() {
     fieldFormatting(name, nameHint, true)
     if (!name.value.length) {
@@ -238,9 +237,12 @@ function checkNameField() {
     }
 }
 
-// email validation
-// http://www.regular-expressions.info/email.html
-// console.log(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test('abc1@sds.co'));
+/*
+Email validation / RFC Standard
+http://www.regular-expressions.info/email.html
+console.log(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test('abc1@sds.co'));
+*/
+
 function checkEmailField() {
     fieldFormatting(email, emailHint, true)
     if (!email.value.length) {
