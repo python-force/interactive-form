@@ -34,9 +34,6 @@ let listLabels = activities.getElementsByTagName("label");
 let checkBoxes = activities.getElementsByTagName("input");
 let activitiesHint = activities.getElementsByClassName("activities-hint")[0]
 
-// Form
-let form = document.getElementsByTagName('form')[0];
-
 // Pay With  field init variables
 let payWith = document.getElementById("payment")
 let paypal = document.getElementById("paypal")
@@ -51,6 +48,10 @@ let ccZipHint = document.getElementsByClassName("zip-hint")[0]
 let ccCVV = document.getElementById("cvv")
 let ccCVVLabel = document.getElementsByClassName('cvv-box')[0].getElementsByTagName("label")[0]
 let ccCVVHint = document.getElementsByClassName("cvv-hint")[0]
+
+// Form
+let form = document.getElementsByTagName('form')[0];
+let formSubmit = true
 
 
 // Function to show Other Job Role field
@@ -145,10 +146,12 @@ function fieldFormatting(element, elementHint, result) {
         element.style.background = null;
         element.style.color = null;
         elementHint.style.display = null;
+        ormSubmit = true
     } else {
         element.style.background = "red";
         element.style.color = "white";
         elementHint.style.display = "block";
+        formSubmit = false
     }
 }
 
@@ -267,9 +270,11 @@ function checkActivities() {
         activities.classList.add("not-valid"); // WCAG 2.1 AA
         activities.classList.remove("valid"); // WCAG 2.1 AA
         activitiesHint.style.display = "block";
+        formSubmit = false
     } else {
         activities.classList.remove("not-valid"); // WCAG 2.1 AA
         activities.classList.add("valid"); // WCAG 2.1 AA
+        formSubmit = true
     }
     console.log(atLeastChecked)
 }
@@ -340,7 +345,6 @@ ccCVV.addEventListener("input", checkCVV);
 // Complete form validation
 form.addEventListener("submit", function(e){ // event into anonymous function
     console.log(e.target)
-    let ver = true;
     e.preventDefault(); //Prevent submit event from refreshing the page
     checkNameField()
     checkEmailField()
@@ -349,9 +353,7 @@ form.addEventListener("submit", function(e){ // event into anonymous function
     checkZip()
     checkCVV()
 
-  if(!ver){
-      return false;
-  }else{
-     //continue what you were doing :)
-  }
+    if (formSubmit) {
+        form.submit()
+    }
 })
