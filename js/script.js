@@ -362,9 +362,17 @@ form.addEventListener("submit", function(e){ // event into anonymous function
     checkName = checkNameField()
     checkEmail = checkEmailField()
     checkAct = checkActivities()
-    checkCC = checkcCard()
-    checkZipCode = checkZip()
-    checkCVVcode = checkCVV()
+    if (payWith.options[payWith.selectedIndex].value === "credit-card") {
+        console.log("Hello")
+        checkCC = checkcCard()
+        checkZipCode = checkZip()
+        checkCVVcode = checkCVV()
+    } else {
+        console.log("DUDE")
+        checkCC = true
+        checkZipCode = true
+        checkCVVcode = true
+    }
 
     if (checkName && checkEmail && checkAct && checkCC && checkZipCode && checkCVVcode ) {
        form.submit()
