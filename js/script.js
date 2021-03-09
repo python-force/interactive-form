@@ -3,18 +3,18 @@ Init variables, objects
  ======================== */
 
 // Name field init variables
-let name = document.getElementById("name")
-let nameLabel = document.getElementsByTagName('label')[0]
-let nameHint = document.getElementsByClassName("name-hint")[0]
+let name = document.getElementById("name");
+let nameLabel = document.getElementsByTagName('label')[0];
+let nameHint = document.getElementsByClassName("name-hint")[0];
 
 // Email field init variables
-let email = document.getElementById("email")
-let emailLabel = document.getElementsByTagName('label')[1]
-let emailHint = document.getElementsByClassName("email-hint")[0]
-let emailHintOrig = "Current email is not valid email..."
+let email = document.getElementById("email");
+let emailLabel = document.getElementsByTagName('label')[1];
+let emailHint = document.getElementsByClassName("email-hint")[0];
+let emailHintOrig = "Current email is not valid email...";
 
 // Title(Job Role) field init variables
-let titleRole = document.getElementById("title")
+let titleRole = document.getElementById("title");
 
 // Select Design dropdown
 // let jobRole = document.getElementById("other-job-role")
@@ -28,36 +28,36 @@ let colors = document.getElementById("color"), colorOption, i;
 // Total
 // Activities field init variables
 let total = 0;
-let totalSum = document.getElementById("activities-cost")
+let totalSum = document.getElementById("activities-cost");
 let activities = document.getElementById("activities");
 let nodelistLabel = activities.getElementsByTagName("input");
 let listLabels = activities.getElementsByTagName("label");
 let checkBoxes = activities.getElementsByTagName("input");
-let activitiesHint = activities.getElementsByClassName("activities-hint")[0]
+let activitiesHint = activities.getElementsByClassName("activities-hint")[0];
 
 // Pay With  field init variables
-let payWith = document.getElementById("payment")
-let paypal = document.getElementById("paypal")
-let bitcoin = document.getElementById("bitcoin")
-let ccNumber = document.getElementById("cc-num")
-let ccNumberLabel = document.getElementsByClassName('credit-card-box')[0].getElementsByTagName("label")[0]
-let ccNumberHint = document.getElementsByClassName("cc-hint")[0]
-let cCard = document.getElementById("credit-card")
-let ccZip = document.getElementById("zip")
-let ccZipLabel = document.getElementsByClassName('zip-box')[0].getElementsByTagName("label")[0]
-let ccZipHint = document.getElementsByClassName("zip-hint")[0]
-let ccCVV = document.getElementById("cvv")
-let ccCVVLabel = document.getElementsByClassName('cvv-box')[0].getElementsByTagName("label")[0]
-let ccCVVHint = document.getElementsByClassName("cvv-hint")[0]
+let payWith = document.getElementById("payment");
+let paypal = document.getElementById("paypal");
+let bitcoin = document.getElementById("bitcoin");
+let ccNumber = document.getElementById("cc-num");
+let ccNumberLabel = document.getElementsByClassName('credit-card-box')[0].getElementsByTagName("label")[0];
+let ccNumberHint = document.getElementsByClassName("cc-hint")[0];
+let cCard = document.getElementById("credit-card");
+let ccZip = document.getElementById("zip");
+let ccZipLabel = document.getElementsByClassName('zip-box')[0].getElementsByTagName("label")[0];
+let ccZipHint = document.getElementsByClassName("zip-hint")[0];
+let ccCVV = document.getElementById("cvv");
+let ccCVVLabel = document.getElementsByClassName('cvv-box')[0].getElementsByTagName("label")[0];
+let ccCVVHint = document.getElementsByClassName("cvv-hint")[0];
 
 // Form
 let form = document.getElementsByTagName('form')[0];
-let checkName = ""
-let checkEmail = ""
-let checkAct = ""
-let checkCC = ""
-let checkZipCode = ""
-let checkCVVcode = ""
+let checkName = "";
+let checkEmail = "";
+let checkAct = "";
+let checkCC = "";
+let checkZipCode = "";
+let checkCVVcode = "";
 
 
 // Function to show Other Job Role field
@@ -115,11 +115,11 @@ function compareActivities(element, checked) {
 function calculateTotal(element, cost, checked) {
     if (checked) {
         total += cost;
-        totalSum.innerHTML = `Total: $${total}`
+        totalSum.innerHTML = `Total: $${total}`;
         compareActivities(element, checked)
     } else {
         total = total - cost;
-        totalSum.innerHTML = `Total: $${total}`
+        totalSum.innerHTML = `Total: $${total}`;
         compareActivities(element, checked)
     }
 }
@@ -138,9 +138,9 @@ document.getElementById("other-job-role").style.display = 'none';
 document.getElementById("color").disabled = true;
 
 // Payments
-paypal.hidden = true
-bitcoin.hidden = true
-payWith.getElementsByTagName('option')[1].selected = 'selected'
+paypal.hidden = true;
+bitcoin.hidden = true;
+payWith.getElementsByTagName('option')[1].selected = 'selected';
 
 /* ========================
 Helper  Functions
@@ -201,17 +201,17 @@ payWith.onchange = paymentOption;
 
 function paymentOption(e) {
     if (e.target.value === "paypal") {
-        paypal.hidden = false
-        bitcoin.hidden = true
+        paypal.hidden = false;
+        bitcoin.hidden = true;
         cCard.hidden = true
     } else if (e.target.value === "bitcoin") {
-        bitcoin.hidden = false
-        paypal.hidden = true
+        bitcoin.hidden = false;
+        paypal.hidden = true;
         cCard.hidden = true
     } else {
-        bitcoin.hidden = true
-        paypal.hidden = true
-        cCard.hidden = false
+        bitcoin.hidden = true;
+        paypal.hidden = true;
+        cCard.hidden = false;
     }
 }
 
@@ -219,11 +219,11 @@ function paymentOption(e) {
 Name Field Validation
 */
 function checkNameField() {
-    fieldFormatting(name, nameHint, true)
+    fieldFormatting(name, nameHint, true);
     if (!name.value.length) {
-        fieldFormatting(name, nameHint, false)
+        fieldFormatting(name, nameHint, false);
         nameLabel.classList.add("not-valid");
-        nameLabel.classList.remove("valid")
+        nameLabel.classList.remove("valid");
         return false
     } else {
         nameLabel.classList.remove("not-valid");
@@ -239,12 +239,12 @@ console.log(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:
 */
 
 function checkEmailField() {
-    fieldFormatting(email, emailHint, true)
+    fieldFormatting(email, emailHint, true);
     if (!email.value.length) {
-        fieldFormatting(email, emailHint, false)
+        fieldFormatting(email, emailHint, false);
         emailLabel.classList.add("not-valid");
         emailLabel.classList.remove("valid");
-        emailHint.innerHTML = "Email cannot be empty - it is required"
+        emailHint.innerHTML = "Email cannot be empty - it is required";
         return false
     } else {
         if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(email.value)) {
@@ -254,7 +254,7 @@ function checkEmailField() {
         } else {
             emailHint.style.display = "inline";
             email.style.background = "red";
-            emailHint.innerHTML = emailHintOrig
+            emailHint.innerHTML = emailHintOrig;
             return false
         }
     }
@@ -286,16 +286,16 @@ function checkActivities() {
 // cCard validation
 function checkcCard() {
     if (isNaN(ccNumber.value)) {
-        fieldFormatting(ccNumber, ccNumberHint, false)
+        fieldFormatting(ccNumber, ccNumberHint, false);
         return false
     } else {
         if (13 <= ccNumber.value.length && ccNumber.value.length <= 16){
-            fieldFormatting(ccNumber, ccNumberHint, true)
+            fieldFormatting(ccNumber, ccNumberHint, true);
             ccNumberLabel.classList.remove("not-valid");
             ccNumberLabel.classList.add("valid");
             return true
         } else {
-            fieldFormatting(ccNumber, ccNumberHint, false)
+            fieldFormatting(ccNumber, ccNumberHint, false);
             ccNumberLabel.classList.add("not-valid");
             ccNumberLabel.classList.remove("valid");
             return false
@@ -306,16 +306,16 @@ function checkcCard() {
 // Zip validation
 function checkZip() {
     if (isNaN(ccZip.value)) {
-        fieldFormatting(ccZip, ccZipHint, false)
+        fieldFormatting(ccZip, ccZipHint, false);
         return false
     } else {
         if (ccZip.value.length === 5){
-            fieldFormatting(ccZip, ccZipHint, true)
+            fieldFormatting(ccZip, ccZipHint, true);
             ccZipLabel.classList.remove("not-valid");
             ccZipLabel.classList.add("valid");
             return true
         } else {
-            fieldFormatting(ccZip, ccZipHint, false)
+            fieldFormatting(ccZip, ccZipHint, false);
             ccZipLabel.classList.add("not-valid");
             ccZipLabel.classList.remove("valid");
             return false
@@ -327,16 +327,16 @@ function checkZip() {
 // Zip validation
 function checkCVV() {
     if (isNaN(ccCVV.value)) {
-        fieldFormatting(ccCVV, ccCVVHint, false)
+        fieldFormatting(ccCVV, ccCVVHint, false);
         return false
     } else {
         if (ccCVV.value.length === 3){
-            fieldFormatting(ccCVV, ccCVVHint, true)
+            fieldFormatting(ccCVV, ccCVVHint, true);
             ccCVVLabel.classList.remove("not-valid");
             ccCVVLabel.classList.add("valid");
             return true
         } else {
-            fieldFormatting(ccCVV, ccCVVHint, false)
+            fieldFormatting(ccCVV, ccCVVHint, false);
             ccCVVLabel.classList.add("not-valid");
             ccCVVLabel.classList.remove("valid");
             return false
@@ -359,18 +359,16 @@ ccCVV.addEventListener("input", checkCVV);
 form.addEventListener("submit", function(e){ // event into anonymous function
     e.preventDefault(); //Prevent submit event from refreshing the page
 
-    checkName = checkNameField()
-    checkEmail = checkEmailField()
-    checkAct = checkActivities()
+    checkName = checkNameField();
+    checkEmail = checkEmailField();
+    checkAct = checkActivities();
     if (payWith.options[payWith.selectedIndex].value === "credit-card") {
-        console.log("Hello")
-        checkCC = checkcCard()
-        checkZipCode = checkZip()
+        checkCC = checkcCard();
+        checkZipCode = checkZip();
         checkCVVcode = checkCVV()
     } else {
-        console.log("DUDE")
-        checkCC = true
-        checkZipCode = true
+        checkCC = true;
+        checkZipCode = true;
         checkCVVcode = true
     }
 
